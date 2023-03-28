@@ -1,7 +1,7 @@
 # MS-BOOKING
 
 1. [Description](#1-Description)
-2. [Starting the project](2#-Starting-the-project)
+2. [Starting the project](#2-Starting-the-project)
 
 ## 1. Description
 
