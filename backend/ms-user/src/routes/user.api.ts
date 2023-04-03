@@ -16,5 +16,17 @@ server.get(`${path}`, async (request: express.Request, response: express.Respons
     }
 });
 
+server.post(`${path}`, async (request: express.Request, response: express.Response) => {
+    try {
+        if (request.body) {
+            return response.json(controller.registerUser(request.body));
+        }
+
+        return "Wrong datas"
+    } catch (err) {
+        console.error("err -> ", err);
+    }
+});
+
 
 export default server;

@@ -1,13 +1,25 @@
-import { UserService } from "../service/user_get_service";
+import { UserGetService } from "../service/user_get_service";
+import { UserPostService } from "../service/user_post_service";
 
 export class UserController {
-    private service: UserService;
+    private serviceGet: UserGetService;
+    private servicePost: UserPostService;
 
-    constructor({ service = new UserService() }) { this.service = service; }
+    constructor({ serviceGet = new UserGetService(), servicePost = new UserPostService() }) 
+    { 
+        this.serviceGet = serviceGet;
+        this.servicePost = servicePost; 
+    }
 
     helloWorld(): string {
-        return this.service.helloWord();
+        return this.serviceGet.helloWord();
     }
+
+    registerUser(dataForRegistration: object): string {
+        return this.servicePost.registerUser(dataForRegistration);
+    }
+
+
 }
 
 
