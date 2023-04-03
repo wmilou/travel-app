@@ -1,4 +1,4 @@
-# MS-LOGIN-USER
+# MS-USER
 
 1. [Description](#1-Description)
 2. [Starting the project](#2-Starting-the-project)

@@ -1,4 +1,4 @@
-import { UserService } from "../service/user.service";
+import { UserService } from "../service/user_get_service";
 
 export class UserController {
     private service: UserService;
@@ -9,3 +9,5 @@ export class UserController {
         return this.service.helloWord();
     }
 }
+
+

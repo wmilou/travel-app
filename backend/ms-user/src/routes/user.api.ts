@@ -16,4 +16,5 @@ server.get(`${path}`, async (request: express.Request, response: express.Respons
     }
 });
 
+
 export default server;
