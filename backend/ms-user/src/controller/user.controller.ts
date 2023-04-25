@@ -1,5 +1,5 @@
-import { UserGetService } from "../service/user_get_service";
-import { UserPostService } from "../service/user_post_service";
+import { UserGetService } from "../service/user_services/user_get_service";
+import { UserPostService } from "../service/user_services/user_post_service";
 
 export class UserController {
     private serviceGet: UserGetService;

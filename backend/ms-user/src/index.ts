@@ -1,12 +1,12 @@
 import express from "express";
-import UsuarioApi from "./routes/user.api"
+import UserApi from "./routes/user.api"
 import bodyParser from "body-parser";
 
 const app = express();
 
 app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: true }));
-app.use("/", UsuarioApi);
+app.use("/", UserApi);
 
 // module.exports = app;
 
