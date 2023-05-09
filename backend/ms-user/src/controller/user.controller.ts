@@ -1,3 +1,4 @@
+import { IDataForRegistration } from "../model/DataForRegistration";
 import { UserGetService } from "../service/user_services/user_get_service";
 import { UserPostService } from "../service/user_services/user_post_service";
 
@@ -15,11 +16,7 @@ export class UserController {
         return this.serviceGet.helloWord();
     }
 
-    registerUser(dataForRegistration: object): string {
+    async registerUser(dataForRegistration: IDataForRegistration): Promise<object> {        
         return this.servicePost.registerUser(dataForRegistration);
     }
-
-
 }
-
-
