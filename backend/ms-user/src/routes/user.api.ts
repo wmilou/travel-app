@@ -10,9 +10,13 @@ const controllerLogin = new LoginController ({});
 
 const server = express();
 
-server.get(`${pathLogin}`, async (request: express.Request, response: express.Response) => {
+server.get(`${pathLogin}`, async (request: express.Request, response: express.Response, next: express.NextFunction) => {
     try {
-        return response.json(controllerLogin.login(request.body));
+        if (request.body && request.headers["id-user"]) {
+            return response.json(await controllerLogin.login(request.body, Number(request.headers["id-user"])));
+        }
+
+        next();
     } catch (err) {
         return response.json(err);
     }

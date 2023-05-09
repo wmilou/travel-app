@@ -1,3 +1,4 @@
+import { ILogin } from "../model/InputLogin";
 import { LoginGetService } from "../service/login_services/login_get_service";
 
 export class LoginController {
@@ -8,8 +9,8 @@ export class LoginController {
         this.serviceGet = serviceGet; 
     }
 
-    login(dataForLogin: object): string  {
-        return this.serviceGet.login(dataForLogin);
+    async login(dataForLogin: ILogin, idUser: number): Promise<string>  {
+        return await this.serviceGet.login(dataForLogin, idUser);
     }
 }
 
