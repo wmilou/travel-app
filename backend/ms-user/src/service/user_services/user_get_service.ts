@@ -25,7 +25,6 @@ export class UserGetService {
 
             throw "Usuário não encontrado"; 
         } catch (err) {
-            console.error(err);
             throw err;
         }
     }

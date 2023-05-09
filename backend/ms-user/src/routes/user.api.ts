@@ -14,7 +14,7 @@ server.get(`${pathLogin}`, async (request: express.Request, response: express.Re
     try {
         return response.json(controllerLogin.login(request.body));
     } catch (err) {
-        console.error("err -> ", err);
+        return response.json(err);
     }
 });
 
@@ -22,7 +22,7 @@ server.get(`${path}`, async (request: express.Request, response: express.Respons
     try {
         return response.json(await controller.fetchAllUsers());
     } catch (err) {
-        console.error("err -> ", err);
+        return response.json(err);
     }
 });
 
@@ -31,8 +31,10 @@ server.get(`${path}/uniqueUser`, async (request: express.Request, response: expr
         if (request.headers["id-user"]) {
             return response.json(await controller.fetchOneUser(Number(request.headers["id-user"])));
         }
+
+        next();
     } catch (err) {
-        console.error("err -> ", err);
+        return response.json(err);
     }
 });
 
@@ -44,7 +46,7 @@ server.post(`${path}`, async (request: express.Request, response: express.Respon
 
         return "Wrong datas"
     } catch (err) {
-        console.error("err -> ", err);
+        return response.json(err);
     }
 });
 
@@ -56,7 +58,19 @@ server.put(`${path}`, async (request: express.Request, response: express.Respons
 
         return "Wrong datas"
     } catch (err) {
-        console.error("err -> ", err);
+        return response.json(err);
+    }
+});
+
+server.delete(`${path}`, async (request: express.Request, response: express.Response, next: express.NextFunction) => {
+    try {
+        if (request.headers["id-user"]) {
+            return response.json(await controller.deleteUser(Number(request.headers["id-user"])));
+        }
+
+        next();
+    } catch (err) {
+        return response.json(err);
     }
 });
 

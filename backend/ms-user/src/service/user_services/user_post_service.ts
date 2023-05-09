@@ -20,7 +20,6 @@ export class UserPostService {
             
             return { idUsuarioSalvo: user.id_pessoa };
         } catch (err) {
-            console.error(err);
             throw err;
         }
     }

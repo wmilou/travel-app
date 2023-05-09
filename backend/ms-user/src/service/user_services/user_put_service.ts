@@ -4,11 +4,11 @@ import { UserGetService } from './user_get_service';
 
 export class UserPutService {
     private prisma = new PrismaClient();
-    private getUser = new UserGetService();
+    private UserGetService = new UserGetService();
     
     async updateUser(idUser: number, dataUpdate: IDataUpdate): Promise<object> {
         try {
-            const user = await this.getUser.fetchOneUser(idUser);
+            const user = await this.UserGetService.fetchOneUser(idUser);
 
             const updateUser = await this.prisma.pessoa.update({
                 where: {
@@ -23,7 +23,6 @@ export class UserPutService {
               
             return { idUsuarioAlterado: updateUser.id_pessoa };
         } catch (err) {
-            console.error(err);
             throw err;
         }
     }
