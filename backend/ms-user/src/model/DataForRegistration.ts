@@ -3,7 +3,7 @@ export interface IDataForRegistration {
     dat_nasc: string
     rg: string,
     cpf_cnpj: string,
-    telefone: string
-    email: string
+    telefone: string,
+    email: string,
     senha: string
 }

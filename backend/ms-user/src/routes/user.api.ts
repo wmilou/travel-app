@@ -1,7 +1,6 @@
-import bodyParser from "body-parser"
-import express from "express"
-import { UserController } from "../controller/user.controller"
-import { LoginController } from "../controller/login.controller"
+import express from "express";
+import { UserController } from "../controller/user.controller";
+import { LoginController } from "../controller/login.controller";
 
 const path: string = "/user";
 const pathLogin: string = "/login";
@@ -41,6 +40,18 @@ server.post(`${path}`, async (request: express.Request, response: express.Respon
     try {
         if (request.body) {
             return response.json(await controller.registerUser(request.body));
+        }
+
+        return "Wrong datas"
+    } catch (err) {
+        console.error("err -> ", err);
+    }
+});
+
+server.put(`${path}`, async (request: express.Request, response: express.Response) => {
+    try {
+        if (request.body && request.headers["id-user"]) {
+            return response.json(await controller.updateUser(Number(request.headers["id-user"]), request.body,));
         }
 
         return "Wrong datas"
