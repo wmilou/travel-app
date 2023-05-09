@@ -1,9 +1,10 @@
 import { PrismaClient } from '@prisma/client'
+import { IUser } from "../../model/User";
 
 export class UserGetService {
     private prisma = new PrismaClient();
 
-    async fetchAllUsers(): Promise<object> {
+    async fetchAllUsers(): Promise<Array<IUser>> {
         try {            
             return this.prisma.pessoa.findMany();
         } catch (err) {
@@ -12,7 +13,7 @@ export class UserGetService {
         }
     }
 
-    async fetchOneUser(idUsers: number): Promise<object> {
+    async fetchOneUser(idUsers: number): Promise<IUser> {
         try {            
             const user = await this.prisma.pessoa.findUnique({
                 where: {
