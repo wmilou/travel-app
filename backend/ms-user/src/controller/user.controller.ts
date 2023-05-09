@@ -12,8 +12,12 @@ export class UserController {
         this.servicePost = servicePost; 
     }
 
-    helloWorld(): string {
-        return this.serviceGet.helloWord();
+    async fetchAllUsers(): Promise<object> {        
+        return this.serviceGet.fetchAllUsers();
+    }
+
+    async fetchOneUser(idUsers: number): Promise<object> {        
+        return this.serviceGet.fetchOneUser(idUsers);
     }
 
     async registerUser(dataForRegistration: IDataForRegistration): Promise<object> {        

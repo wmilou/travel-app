@@ -21,7 +21,17 @@ server.get(`${pathLogin}`, async (request: express.Request, response: express.Re
 
 server.get(`${path}`, async (request: express.Request, response: express.Response) => {
     try {
-        return response.json(controller.helloWorld());
+        return response.json(await controller.fetchAllUsers());
+    } catch (err) {
+        console.error("err -> ", err);
+    }
+});
+
+server.get(`${path}/uniqueUser`, async (request: express.Request, response: express.Response, next: express.NextFunction) => {
+    try {
+        if (request.headers["id-user"]) {
+            return response.json(await controller.fetchOneUser(Number(request.headers["id-user"])));
+        }
     } catch (err) {
         console.error("err -> ", err);
     }
