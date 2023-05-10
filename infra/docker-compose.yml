@@ -1,7 +1,7 @@
 # version: '2.4'
 # versions no longer needed for compose CLI use (as of 2020)
 services:
-  node:
+  node-frontend:
     build:
       context: .
       args:
@@ -19,12 +19,12 @@ services:
       - "9229:9229"
     volumes:
       - ../backend:/opt/node_app/app
-      - ./package.json:/opt/node_app/package.json
+      # - ./package.json:/opt/node_app/package.json
       - notused:/opt/node_app/app/node_modules
     environment:
       - NODE_ENV=development
       - PGADMIN_DEFAULT_EMAIL="root@email.com"
-      - PGADMIN_DEFAULT_PASSWORD="copa2022!"
+      - PGADMIN_DEFAULT_PASSWORD=""
     links:
       - "postgres:postgresdb"
     depends_on:
@@ -38,7 +38,7 @@ services:
     image: dpage/pgadmin4
     environment:
       PGADMIN_DEFAULT_EMAIL: "root@email.com"
-      PGADMIN_DEFAULT_PASSWORD: "copa2022!"
+      PGADMIN_DEFAULT_PASSWORD: ""
     ports:
       - "8080:80"
     depends_on:
@@ -51,7 +51,7 @@ services:
   postgres:
     image: postgres:latest
     environment:
-      POSTGRES_PASSWORD: "copa2022!"
+      POSTGRES_PASSWORD: ""
       POSTGRES_USER: "root"
     ports:
       - "5432:5432"
