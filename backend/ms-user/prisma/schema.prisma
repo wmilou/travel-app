@@ -1,0 +1,56 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Pessoa {
+    id_pessoa     Int     @id @default(autoincrement())
+    nome          String 
+    dat_nasc      String
+    rg            String
+    cpf_cnpj      String
+    telefone      String
+    email         String
+    senha         String
+
+    viagem_pessoa Viagem_pessoa[]
+}
+
+model Viagem {
+    id_viagem     Int        @id @default(autoincrement())
+    local         String
+    vagas         Int
+    local_partida String
+    hora_partida  String
+    hora_volta    String
+    imagem_1      String
+    imagem_2      String
+    imagem_3      String
+
+    viagem_pessoa Viagem_pessoa[] 
+}
+
+model Forma_pagamento {
+    id_pagamento  Int      @id @default(autoincrement())
+    descricao     Int
+
+    viagem_pessoa Viagem_pessoa[]
+}
+
+model Viagem_pessoa {
+    id_viagem_pessoa Int    @id @default(autoincrement())
+    pessoa           Pessoa @relation(fields: [fk_pessoa], references: [id_pessoa])
+    fk_pessoa        Int
+    viagem           Viagem @relation(fields: [fk_viagem], references: [id_viagem])
+    fk_viagem        Int
+    forma_pagamento  Forma_pagamento @relation(fields: [fk_forma_pag], references: [id_pagamento])
+    fk_forma_pag     Int
+    sn_quitado       Int    @default(0)
+}
