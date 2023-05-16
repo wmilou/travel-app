@@ -9,8 +9,8 @@ export class LoginController {
         this.serviceGet = serviceGet; 
     }
 
-    async login(dataForLogin: ILogin, idUser: number): Promise<string>  {
-        return await this.serviceGet.login(dataForLogin, idUser);
+    async login(dadosParaLogin: ILogin, idUsuario: number): Promise<string>  {
+        return await this.serviceGet.login(dadosParaLogin, idUsuario);
     }
 }
 

@@ -1,14 +1,14 @@
 # MS-USER
 
-1. [Description](#1-Description)
-2. [Starting the project](#2-Starting-the-project)
+1. [Descrição](#1-Descrição)
+2. [Iniciando o projeto](#2-Iniciando-o-projeto)
 
-## 1. Description
+## 1. Descrição
+Microsserviço responsável pelo processamento de dados relacionados ao usuário do sistema.
 
-Microservice responsible for processing data related to the system user.
-
-## 2. Starting the project
-
-To start the project, run the following commands in the terminal:
-- npm install or npm i (To install the libraries used in the project)
-- npm start (To run the project locally)
+## 2. Iniciando o projeto
+Para iniciar o projeto, execute os seguintes comandos no terminal:
+- npm install ou npm i (Para instalar as bibliotecas utilizadas no projeto)
+- npm start (Para executar o projeto localmente)
+- npx prisma migrate dev (Gerar sql do projeto)
+- npx prisma generate

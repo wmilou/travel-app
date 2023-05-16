@@ -8,6 +8,7 @@ CREATE TABLE "Pessoa" (
     "telefone" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "senha" TEXT NOT NULL,
+    "ativo" BOOLEAN NOT NULL,
 
     CONSTRAINT "Pessoa_pkey" PRIMARY KEY ("id_pessoa")
 );
@@ -45,6 +46,9 @@ CREATE TABLE "Viagem_pessoa" (
 
     CONSTRAINT "Viagem_pessoa_pkey" PRIMARY KEY ("id_viagem_pessoa")
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Pessoa_cpf_cnpj_key" ON "Pessoa"("cpf_cnpj");
 
 -- AddForeignKey
 ALTER TABLE "Viagem_pessoa" ADD CONSTRAINT "Viagem_pessoa_fk_pessoa_fkey" FOREIGN KEY ("fk_pessoa") REFERENCES "Pessoa"("id_pessoa") ON DELETE RESTRICT ON UPDATE CASCADE;

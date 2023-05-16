@@ -15,10 +15,11 @@ model Pessoa {
     nome          String 
     dat_nasc      String
     rg            String
-    cpf_cnpj      String
+    cpf_cnpj      String  @unique
     telefone      String
     email         String
     senha         String
+    ativo         Boolean
 
     viagem_pessoa Viagem_pessoa[]
 }

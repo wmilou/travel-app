@@ -1,14 +1,12 @@
 import express from "express";
-import UserApi from "./routes/user.api"
+import UsuarioApi from "./routes/usuario.api"
 import bodyParser from "body-parser";
 
 const app = express();
 
 app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: true }));
-app.use("/", UserApi);
-
-// module.exports = app;
+app.use("/", UsuarioApi);
 
 const PORT = process.env.PORT || 3000;
 

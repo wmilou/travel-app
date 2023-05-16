@@ -1,15 +1,15 @@
 import { ILogin } from "../../model/InputLogin";
-import { UserGetService } from "../user_services/user_get_service";
+import { UsuarioGetService } from "../usuario_services/usuario_get_service";
 
 export class LoginGetService {
-    private UserGetService = new UserGetService();
+    private UsuarioGetService = new UsuarioGetService();
 
-    async login(dataForLogin: ILogin, idUser: number): Promise<string> {
-        const user = await this.UserGetService.fetchOneUser(idUser);
-        const { email } = dataForLogin;
-        const { senha } = dataForLogin;
+    async login(dadosParaLogin: ILogin, idUsuario: number): Promise<string> {
+        const usuario = await this.UsuarioGetService.buscarUmUsuario(idUsuario);
+        const { email } = dadosParaLogin;
+        const { senha } = dadosParaLogin;
 
-        if (email === user.email && senha === user.senha) {
+        if (email === usuario.email && senha === usuario.senha) {
             return "Login realizado com sucesso!!";
         }
 
