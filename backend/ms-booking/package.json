@@ -1,5 +1,5 @@
 {
-  "name": "ms-payment",
+  "name": "ms-viagem",
   "version": "0.0.1",
   "description": "",
   "author": "Andre, Luis, Vinicius e Wedsley",
@@ -12,10 +12,12 @@
   },
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^4.14.1",
     "axios": "^1.3.4",
     "body-parser": "^1.20.2",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "prisma": "^4.11.0"
+    "prisma": "^4.14.1"
   },
   "devDependencies": {
     "@types/express": "^4.17.17",
