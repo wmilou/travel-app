@@ -6,7 +6,7 @@ import { Pessoa } from "@prisma/client";
 export class UsuarioService {
     public static async retornarDadosDoUsuario(idUsuario: number): Promise<Pessoa> {
         try {
-            const endpoint = `${enviroment.hostMSUser}/usuario/buscarUsuarioUnico`;
+            const endpoint = `${enviroment.hostMSUsuario}/usuario/buscarUsuarioUnico`;
 
             const result = await axios({
                 method: "get",

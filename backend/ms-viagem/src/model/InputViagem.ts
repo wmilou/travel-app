@@ -1,3 +1,5 @@
+import { IInputFormaPagamento } from "./Forma_De_Pagamento/InputFormaPagamento"
+
 export interface IInputViagem {
     local: string,
     vagas: number, 
@@ -7,5 +9,6 @@ export interface IInputViagem {
     imagem1: string,
     imagem2: string,
     imagem3: string,  
-    idUsuario: number
+    idUsuario: number,
+    formaDePagamento: IInputFormaPagamento
 }

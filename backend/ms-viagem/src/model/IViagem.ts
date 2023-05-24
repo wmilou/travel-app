@@ -1,6 +1,3 @@
-import { Viagem } from "@prisma/client"
-import { IViagemPessoa } from "./IViagemPessoa"
-
 export interface IViagem {
     id_viagem: number,
     local: string,
@@ -12,6 +9,5 @@ export interface IViagem {
     imagem_2: string,   
     imagem_3: string,
     viagem_cancelada: boolean,
-    viagem_pessoa: Array<IViagemPessoa>
 }
 
