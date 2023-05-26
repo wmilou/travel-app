@@ -32,7 +32,7 @@ CREATE TABLE "Viagem" (
 -- CreateTable
 CREATE TABLE "Forma_pagamento" (
     "id_pagamento" SERIAL NOT NULL,
-    "descricao" INTEGER NOT NULL,
+    "descricao" TEXT NOT NULL,
 
     CONSTRAINT "Forma_pagamento_pkey" PRIMARY KEY ("id_pagamento")
 );
