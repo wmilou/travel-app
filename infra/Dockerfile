@@ -34,9 +34,7 @@ COPY --chown=node:node ${PATH_TO_CODE}package.json ./
 RUN npm i && npm cache clean --force
 
 ENV PATH /opt/node_app/node_modules/.bin:$PATH
-
-# check every 30s to ensure this service returns HTTP 200
-HEALTHCHECK --interval=30s CMD node healthcheck.js
+ENV PATH /opt/node_app/typescript/bin:$PATH
 
 # copy in our source code last, as it changes the most
 # copy in as node user, so permissions match what we need
@@ -44,8 +42,6 @@ WORKDIR /opt/node_app/app
 COPY --chown=node:node ${PATH_TO_CODE} .
 
 
-# COPY docker-entrypoint.sh #!/usr/bin/
-# ENTRYPOINT ["docker-entrypoint.sh"]
 
 # if you want to use npm start instead, then use `docker run --init in production`
 # so that signals are passed properly. Note the code in index.js is needed to catch Docker signals

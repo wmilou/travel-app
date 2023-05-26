@@ -6,6 +6,7 @@ export class UserGetService {
 
     async fetchAllUsers(): Promise<Array<IUser>> {
         try {            
+            console.log("Teste")
             return this.prisma.pessoa.findMany();
         } catch (err) {
             console.error(err);

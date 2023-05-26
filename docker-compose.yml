@@ -12,13 +12,10 @@ services:
       - /bin/sh
       - -c
       - |
-        echo "------------------   TSC   ---------------------"
-        ../node_modules/typescript/bin/tsc -p .
-        echo "------------------ NODEMON --------------------"
-        ../node_modules/.bin/nodemon --inspect=0.0.0.0:3001 ./dist/index.js
         echo "------------------ PRISMA  --------------------"
-        prisma generate 
-        echo "-----------------------------------------------"
+        npx prisma generate
+        echo "------------------ NODEMON --------------------"
+        npm start
     ports:
       - "3000:3000"
       - "3001:3001"
