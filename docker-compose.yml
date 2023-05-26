@@ -1,0 +1,67 @@
+# version: '2.4'
+# versions no longer needed for compose CLI use (as of 2020)
+services:
+  node-backend-ms-user:
+    build:
+      context: ./
+      dockerfile: ./infra/Dockerfile
+      args:
+        - PATH_TO_CODE=./backend/ms-user/
+        - NODE_ENV=development
+    command:
+      - /bin/sh
+      - -c
+      - |
+        echo "------------------   TSC   ---------------------"
+        ../node_modules/typescript/bin/tsc -p .
+        echo "------------------ NODEMON --------------------"
+        ../node_modules/.bin/nodemon --inspect=0.0.0.0:3001 ./dist/index.js
+        echo "------------------ PRISMA  --------------------"
+        prisma generate 
+        echo "-----------------------------------------------"
+    ports:
+      - "3000:3000"
+      - "3001:3001"
+      - "9229:9229"
+    volumes:
+      - ./backend/ms-user/:/opt/node_app/app
+      - ./backend/ms-user/package.json:/opt/node_app/package.json
+      - notused:/opt/node_app/app/node_modules
+    env_file:
+        - ./infra/.env
+    links:
+      - "postgres:postgresdb"
+    depends_on:
+      - postgres
+    networks:
+      - ms-user-with-postgres
+
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - "8080:80"
+    depends_on:
+      - postgres
+    env_file:
+        - ./infra/.env
+    networks:
+      - ms-user-with-postgres
+    links:
+      - "postgres:postgresdb"
+
+  postgres:
+    image: postgres:latest
+    env_file:
+        - ./infra/.env
+    ports:
+      - "5432:5432"
+    networks:
+      - ms-user-with-postgres
+
+volumes:
+  notused:
+
+networks: 
+  ms-user-with-postgres:
+    driver: bridge
+

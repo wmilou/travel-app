@@ -7,10 +7,15 @@ FROM node:16
 ARG NODE_ENV=production
 ENV NODE_ENV $NODE_ENV
 
+
 # default to port 3000 for node, and 9229 and 9230 (tests) for debug
 ARG PORT=3000
 ENV PORT $PORT
 EXPOSE $PORT 3000
+
+#Path to get the code and the package json
+ARG PATH_TO_CODE
+
 
 # you'll likely want the latest npm, regardless of node version, for speed and fixes
 # but pin this version for the best stability
@@ -25,8 +30,9 @@ WORKDIR /opt/node_app
 # user who runs the app.
 # https://github.com/nodejs/docker-node/blob/master/docs/BestPractices.md#non-root-user
 USER node
-COPY --chown=node:node package.json ./
+COPY --chown=node:node ${PATH_TO_CODE}package.json ./
 RUN npm i && npm cache clean --force
+
 ENV PATH /opt/node_app/node_modules/.bin:$PATH
 
 # check every 30s to ensure this service returns HTTP 200
@@ -35,12 +41,11 @@ HEALTHCHECK --interval=30s CMD node healthcheck.js
 # copy in our source code last, as it changes the most
 # copy in as node user, so permissions match what we need
 WORKDIR /opt/node_app/app
-COPY --chown=node:node . .
+COPY --chown=node:node ${PATH_TO_CODE} .
 
 
-COPY docker-entrypoint.sh #!/usr/bin/
-ENTRYPOINT ["docker-entrypoint.sh"]
-
+# COPY docker-entrypoint.sh #!/usr/bin/
+# ENTRYPOINT ["docker-entrypoint.sh"]
 
 # if you want to use npm start instead, then use `docker run --init in production`
 # so that signals are passed properly. Note the code in index.js is needed to catch Docker signals
