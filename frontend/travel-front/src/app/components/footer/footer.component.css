@@ -1,0 +1,33 @@
+footer{
+    color: #fff;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: .5rem 0;
+}
+footer .box-info{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+footer .box-info .head a{
+    font-size: 33px;
+}
+footer .box-info .body p,
+footer .box-contact p{
+    font-size: 14px;
+    text-align: justify;
+    margin: 0;
+}
+footer .box-contact{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+footer .box-contact h2{
+    font-size: 23px;
+}
+footer .box-contact p{
+    margin-bottom: 10px;
+}

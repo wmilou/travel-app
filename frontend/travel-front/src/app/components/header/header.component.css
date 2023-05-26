@@ -1,0 +1,71 @@
+.navbar-brand{
+    font-size: 40px;
+    font-weight: 400;
+}
+
+.navbar-brand span{
+    font-weight: 700;
+}
+.user-role ul{
+    padding: 0;
+    list-style: none;
+    margin: 0;
+}
+.user{
+    font-size: 40px;
+}
+.user fa-icon{
+    color: #fff;
+}
+
+/* ------------ */
+.topbar ul{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1.5rem;
+
+    padding: 0;
+    margin: 0;
+}
+
+.topbar ul li a{
+    color: #212529
+}
+.user-role ul{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+.user-role li{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.user-role p{
+    font-size: 13px;
+    color: #fff;
+    margin: 0;
+}
+
+.user-role .cart a {
+    color: #fff;
+    font-size: 30px;
+    position: relative;
+}
+.user-role .cart a p{
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background: var(--color-primary);
+    border-radius: 25px;
+    height: 20px;
+    width: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
