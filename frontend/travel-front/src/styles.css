@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+:root{
+    --color-primary: #269dd7;
+}
+*, html, body{
+    font-family: 'Poppins', sans-serif;
+}
+.color-text-primary{
+    color: var(--color-primary);
+}
+
+.bg-color-primary{
+    background-color: var(--color-primary);
+}
