@@ -1,7 +1,7 @@
 # version: '2.4'
 # versions no longer needed for compose CLI use (as of 2020)
 services:
-  node-backend-ms-user:
+  node-backend-ms-usuario:
     build:
       context: ./
       dockerfile: ./infra/Dockerfile
@@ -18,10 +18,9 @@ services:
         npm run watch
     ports:
       - "3000:3000"
-      - "3001:3001"
     volumes:
-      - ./backend/ms-user/:/opt/node_app/app
-      - ./backend/ms-user/package.json:/opt/node_app/package.json
+      - ./backend/ms-usuario/:/opt/node_app/app
+      - ./backend/ms-usuario/package.json:/opt/node_app/package.json
       - notused:/opt/node_app/app/node_modules
     env_file:
         - ./infra/.env
@@ -30,7 +29,67 @@ services:
     depends_on:
       - postgres
     networks:
-      - ms-user-with-postgres
+      - ms-usuario-with-postgres
+
+  node-backend-ms-viagem:
+    build:
+      context: ./
+      dockerfile: ./infra/Dockerfile
+      args:
+        - PATH_TO_CODE=./backend/ms-viagem/
+        - NODE_ENV=development
+    command:
+      - /bin/sh
+      - -c
+      - |
+        echo "------------------ PRISMA  --------------------"
+        npx prisma generate
+        echo "------------------ NODEMON --------------------"
+        npm run watch
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./backend/ms-viagem/:/opt/node_app/app
+      - ./backend/ms-viagem/package.json:/opt/node_app/package.json
+      - notused:/opt/node_app/app/node_modules
+    env_file:
+        - ./infra/.env
+    links:
+      - "postgres:postgresdb"
+    depends_on:
+      - postgres
+    networks:
+      - ms-viagem-with-postgres
+
+  node-backend-ms-formas-de-pagamento:
+    build:
+      context: ./
+      dockerfile: ./infra/Dockerfile
+      args:
+        - PATH_TO_CODE=./backend/ms-formas-de-pagamento/
+        - NODE_ENV=development
+    command:
+      - /bin/sh
+      - -c
+      - |
+        echo "------------------ PRISMA  --------------------"
+        npx prisma generate
+        echo "------------------ NODEMON --------------------"
+        npm run watch
+    ports:
+      - "3002:3002"
+    volumes:
+      - ./backend/ms-formas-de-pagamento/:/opt/node_app/app
+      - ./backend/ms-formas-de-pagamento/package.json:/opt/node_app/package.json
+      - notused:/opt/node_app/app/node_modules
+    env_file:
+        - ./infra/.env
+    links:
+      - "postgres:postgresdb"
+    depends_on:
+      - postgres
+    networks:
+      - ms-formas-de-pagamento-with-postgres
 
   pgadmin:
     image: dpage/pgadmin4
@@ -41,7 +100,9 @@ services:
     env_file:
         - ./infra/.env
     networks:
-      - ms-user-with-postgres
+      - ms-usuario-with-postgres
+      - ms-viagem-with-postgres
+      - ms-formas-de-pagamento-with-postgres
     links:
       - "postgres:postgresdb"
 
@@ -52,12 +113,18 @@ services:
     ports:
       - "5432:5432"
     networks:
-      - ms-user-with-postgres
+      - ms-usuario-with-postgres
+      - ms-viagem-with-postgres
+      - ms-formas-de-pagamento-with-postgres
 
 volumes:
   notused:
 
 networks: 
-  ms-user-with-postgres:
+  ms-usuario-with-postgres:
+    driver: bridge
+  ms-formas-de-pagamento-with-postgres:
+    driver: bridge
+  ms-viagem-with-postgres:
     driver: bridge
 
