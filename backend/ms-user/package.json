@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "tsc && node dist/index.js",
-    "watch": "tsc -p . && nodemon dist/index.js",
+    "watch": "nodemon -e ts  --exec \"tsc && node dist/index.js\"",
     "build": "tsc -p ."
   },
   "license": "ISC",

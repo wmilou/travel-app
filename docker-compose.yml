@@ -15,11 +15,10 @@ services:
         echo "------------------ PRISMA  --------------------"
         npx prisma generate
         echo "------------------ NODEMON --------------------"
-        npm start
+        npm run watch
     ports:
       - "3000:3000"
       - "3001:3001"
-      - "9229:9229"
     volumes:
       - ./backend/ms-user/:/opt/node_app/app
       - ./backend/ms-user/package.json:/opt/node_app/package.json

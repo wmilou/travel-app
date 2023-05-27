@@ -9,6 +9,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/", UserApi);
 
 // module.exports = app;
+console.log("Teste 2")
+
 
 const PORT = process.env.PORT || 3000;
 
