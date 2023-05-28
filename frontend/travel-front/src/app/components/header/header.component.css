@@ -1,5 +1,13 @@
+header{
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    box-shadow: 0 0px 15px 5px rgba(0,0,0,.3);
+
+}
 .navbar-brand{
-    font-size: 40px;
+    font-size: 28px;
     font-weight: 400;
 }
 
@@ -12,7 +20,7 @@
     margin: 0;
 }
 .user{
-    font-size: 40px;
+    font-size: 30px;
 }
 .user fa-icon{
     color: #fff;
@@ -51,21 +59,29 @@
     margin: 0;
 }
 
-.user-role .cart a {
-    color: #fff;
-    font-size: 30px;
-    position: relative;
+.questions{
+    color: #fff
 }
-.user-role .cart a p{
-    position: absolute;
-    top: -5px;
-    right: -10px;
-    background: var(--color-primary);
-    border-radius: 25px;
-    height: 20px;
-    width: 20px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.separator{
+    width: 2px;
+    height: 35px;
+    background: #fff;
+}
+.user-role .fidelidade{
+    gap: 2px;
+}
+.fidelidade span{
+    color: #fff;
+}
+.fidelidade span:first-child{
+    background: linear-gradient(308.6deg, var(--color-primary) -7.94%,  var(--color-secondary) 79.38%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
+}
+
+.fidelidade svg{
+    width: 20px;
+    height: auto;
 }

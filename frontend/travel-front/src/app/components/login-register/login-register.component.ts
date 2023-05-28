@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./login-register.component.css']
 })
 export class LoginRegisterComponent {
+  currentPage: string = 'login';
 
+  changeView(page: string){
+    this.currentPage = page;
+  }
 }

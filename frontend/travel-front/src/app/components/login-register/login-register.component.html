@@ -1,1 +1,67 @@
-<p>login-register works!</p>
+<section id="login" class="pt-5 pb-5" *ngIf="currentPage == 'login'">
+    <div class="container">
+        <div class="row d-flex align-center justify-content-center">
+            <div class="col-lg-8 d-flex align-center justify-content-center">
+                <form>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">E-mail</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Senha</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1">
+                    </div>
+
+                    <div class="d-flex align-center justify-content-center column-gap-3">
+                        <button class="change-view" (click)="changeView('register')">Não possui um cadastro? Clique aqui!</button>
+                        <button type="submit" class="btn btn-primary">Entrar</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="register" class="pt-5 pb-5" *ngIf="currentPage == 'register'">
+    <div class="container">
+        <div class="row d-flex align-center justify-content-center">
+            <div class="col-lg-8 d-flex align-center justify-content-center">
+                <form>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nome</label>
+                        <input type="text" class="form-control" id="name" >
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email1" class="form-label">E-mail</label>
+                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Senha</label>
+                        <input type="password" class="form-control" id="password">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="telefone" class="form-label">Telefone</label>
+                        <input type="tel" class="form-control" id="telefone">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="cadastro" class="form-label">CPF/CNPJ</label>
+                        <input type="text" class="form-control" id="cadastro">
+                    </div>
+
+                    <div class="d-flex align-center justify-content-center column-gap-3">
+                        <button class="change-view" (click)="changeView('login')">Já possui um cadastro? Clique aqui!</button>
+                        <button type="submit" class="btn btn-primary">Cadastrar</button>
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

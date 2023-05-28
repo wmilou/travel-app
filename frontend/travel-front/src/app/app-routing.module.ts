@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TravelListComponent } from './components/travel-list/travel-list.component';
 import { TravelPageComponent } from './components/travel-page/travel-page.component';
+import { LoginRegisterComponent } from './components/login-register/login-register.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,10 @@ const routes: Routes = [
   {
     path: 'travel/view/:id',
     component: TravelPageComponent
+  },
+  {
+    path: 'travel/register',
+    component: LoginRegisterComponent
   }
 ];
 

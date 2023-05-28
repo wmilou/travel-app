@@ -31,3 +31,43 @@ footer .box-contact h2{
 footer .box-contact p{
     margin-bottom: 10px;
 }
+
+#newsletter{
+    background: linear-gradient(308.6deg, var(--color-primary) -7.94%,  var(--color-secondary) 79.38%);
+    padding: 2rem 0;
+}
+#newsletter .inner-container{
+    gap: 60px
+}
+
+#newsletter .inner-container .newsletter-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+#newsletter .inner-container .newsletter-form p{
+    font-size: 26px;
+    color: #fff;
+    margin: 0;
+}
+#newsletter .newsletter-form form{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+#newsletter .newsletter-form form input{
+    border: none;
+    border-radius: 10px;
+    padding: 10px 15px;
+}
+
+#newsletter .newsletter-form form button{
+    background: none;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    color: #fff;
+    padding: 10px 20px;
+}
