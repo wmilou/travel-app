@@ -6,7 +6,6 @@ const app = express();
 
 app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: true }));
-
 app.use("/", UsuarioApi);
 
 const PORT = process.env.PORT || 3000;
