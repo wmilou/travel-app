@@ -14,6 +14,11 @@ services:
       - "node-backend-ms-usuario:node-backend-ms-usuario"
       - "node-backend-ms-viagem:node-backend-ms-viagem"
       - "node-backend-ms-formas-de-pagamento:node-backend-ms-formas-de-pagamento"
+    networks:
+      - ms-frontend-with-postgres
+      - ms-usuario-with-postgres
+      - ms-viagem-with-postgres
+      - ms-formas-de-pagamento-with-postgres
 
   node-frontend:
     build:
