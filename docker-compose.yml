@@ -2,12 +2,12 @@ services:
   nginx-reverse-proxy:
     image: nginx:latest
     volumes:
-      # - /home/xx/Desktop/cust/xx/Docker/nginx/reverse_proxy.conf:/etc/nginx/conf.d/default.conf
-      # - /home/xx/Desktop/cust/xx/Docker/nginx/cert/star_xx_com.pem:/etc/nginx/cert/star_xx_com.pem
-      # - /home/xx/Desktop/cust/xx/Docker/nginx/cert/star_xx_com.key:/etc/nginx/cert/star_xx_com.key
-      # - /home/xx/Desktop/cust/xx/Docker/nginx/cert/star_xx_com.crt:/etc/nginx/cert/star_xx_com.crt
+      - ./infra/AppGatewayConfig/nginx/reverse_proxy.conf:/etc/nginx/conf.d/default.conf
+      # - ./infra/AppGatewayConfig/nginx/cert/star_xx_com.pem:/etc/nginx/cert/star_xx_com.pem
+      # - ./infra/AppGatewayConfig/nginx/cert/star_xx_com.key:/etc/nginx/cert/star_xx_com.key
+      # - ./infra/AppGatewayConfig/nginx/cert/star_xx_com.crt:/etc/nginx/cert/star_xx_com.crt
     ports:
-      - 8080:8080
+      - 8080:80
       - 443:443
     links:
       - "node-frontend:node-frontend"
@@ -142,7 +142,7 @@ services:
   pgadmin:
     image: dpage/pgadmin4
     ports:
-      - "8080:80"
+      - "8043:80"
     depends_on:
       - postgres
     env_file:
