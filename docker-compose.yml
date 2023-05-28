@@ -7,7 +7,7 @@ services:
       # - ./infra/AppGatewayConfig/nginx/cert/star_xx_com.key:/etc/nginx/cert/star_xx_com.key
       # - ./infra/AppGatewayConfig/nginx/cert/star_xx_com.crt:/etc/nginx/cert/star_xx_com.crt
     ports:
-      - 8080:80
+      - 80:80
       - 443:443
     links:
       - "node-frontend:node-frontend"
@@ -81,6 +81,8 @@ services:
       - postgres
     networks:
       - ms-usuario-with-postgres
+    links:
+      - "postgres:postgresdb"
 
   node-backend-ms-viagem:
     build:
@@ -112,6 +114,8 @@ services:
       - postgres
     networks:
       - ms-viagem-with-postgres
+    links:
+      - "postgres:postgresdb"
 
   node-backend-ms-formas-de-pagamento:
     build:
@@ -143,6 +147,8 @@ services:
       - postgres
     networks:
       - ms-formas-de-pagamento-with-postgres
+    links:
+      - "postgres:postgresdb"
 
   pgadmin:
     image: dpage/pgadmin4
