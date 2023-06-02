@@ -6,16 +6,16 @@ services:
     ports:
       - 80:80
       - 443:443
-    links:
-      - "node-frontend:node-frontend"
-      - "node-backend-ms-usuario:node-backend-ms-usuario"
-      - "node-backend-ms-viagem:node-backend-ms-viagem"
-      - "node-backend-ms-formas-de-pagamento:node-backend-ms-formas-de-pagamento"
     networks:
       - ms-frontend-with-postgres
       - ms-usuario-with-postgres
       - ms-viagem-with-postgres
       - ms-formas-de-pagamento-with-postgres
+    links:
+      - "node-frontend:node-frontend"
+      - "node-backend-ms-usuario:node-backend-ms-usuario"
+      - "node-backend-ms-viagem:node-backend-ms-viagem"
+      - "node-backend-ms-formas-de-pagamento:node-backend-ms-formas-de-pagamento"
 
   node-frontend:
     build:
@@ -39,14 +39,14 @@ services:
       - notused:/opt/node_app/app/node_modules
     env_file:
         - ./infra/.env
-    links:
-      - "postgres:postgresdb"
     depends_on:
       - node-backend-ms-usuario 
       - node-backend-ms-viagem
       - node-backend-ms-formas-de-pagamento
     networks:
       - ms-frontend-with-postgres
+    links:
+      - "postgres:postgresdb"
 
   node-backend-ms-usuario:
     build:
@@ -72,12 +72,12 @@ services:
       - notused:/opt/node_app/app/node_modules
     env_file:
         - ./infra/.env
-    links:
-      - "postgres:postgresdb"
     depends_on:
       - postgres
     networks:
       - ms-usuario-with-postgres
+    links:
+      - "postgres:postgresdb"
 
   node-backend-ms-viagem:
     build:
@@ -103,12 +103,12 @@ services:
       - notused:/opt/node_app/app/node_modules
     env_file:
         - ./infra/.env
-    links:
-      - "postgres:postgresdb"
     depends_on:
       - postgres
     networks:
       - ms-viagem-with-postgres
+    links:
+      - "postgres:postgresdb"
 
   node-backend-ms-formas-de-pagamento:
     build:
@@ -134,12 +134,12 @@ services:
       - notused:/opt/node_app/app/node_modules
     env_file:
         - ./infra/.env
-    links:
-      - "postgres:postgresdb"
     depends_on:
       - postgres
     networks:
       - ms-formas-de-pagamento-with-postgres
+    links:
+      - "postgres:postgresdb"
 
   pgadmin:
     image: dpage/pgadmin4
