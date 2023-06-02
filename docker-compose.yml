@@ -3,9 +3,6 @@ services:
     image: nginx:latest
     volumes:
       - ./infra/AppGatewayConfig/nginx/reverse_proxy.conf:/etc/nginx/conf.d/default.conf
-      # - ./infra/AppGatewayConfig/nginx/cert/star_xx_com.pem:/etc/nginx/cert/star_xx_com.pem
-      # - ./infra/AppGatewayConfig/nginx/cert/star_xx_com.key:/etc/nginx/cert/star_xx_com.key
-      # - ./infra/AppGatewayConfig/nginx/cert/star_xx_com.crt:/etc/nginx/cert/star_xx_com.crt
     ports:
       - 80:80
       - 443:443
@@ -81,8 +78,6 @@ services:
       - postgres
     networks:
       - ms-usuario-with-postgres
-    links:
-      - "postgres:postgresdb"
 
   node-backend-ms-viagem:
     build:
@@ -114,8 +109,6 @@ services:
       - postgres
     networks:
       - ms-viagem-with-postgres
-    links:
-      - "postgres:postgresdb"
 
   node-backend-ms-formas-de-pagamento:
     build:
@@ -147,8 +140,6 @@ services:
       - postgres
     networks:
       - ms-formas-de-pagamento-with-postgres
-    links:
-      - "postgres:postgresdb"
 
   pgadmin:
     image: dpage/pgadmin4
@@ -168,7 +159,9 @@ services:
   postgres:
     image: postgres:latest
     env_file:
-        - ./infra/.env
+      - ./infra/.env
+    volumes:
+      - ./infra/Database/migration.sql:/docker-entrypoint-initdb.d/create_tables.sql
     ports:
       - "5432:5432"
     networks:
