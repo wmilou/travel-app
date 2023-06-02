@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --host 0.0.0.0 --disable-host-check",
+    "start": "ng serve --poll 2000 --open --host 0.0.0.0 --disable-host-check",
     "build": "ng build",
-    "watch": "ng build --host 0.0.0.0 --watch --configuration development --disable-host-check",
+    "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
   "private": true,
