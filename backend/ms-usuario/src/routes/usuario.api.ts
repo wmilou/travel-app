@@ -259,7 +259,7 @@ server.post(`${path}`, async (request: express.Request, response: express.Respon
  *            type: object
  *            example:
  *               {
- *                 "id_pessoa": 1,                                
+ *                 "idUsuarioAlterado": 1,                                
  *               }    
  *        422:
  *          description: Falha ao acessar DB

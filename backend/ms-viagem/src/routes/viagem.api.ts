@@ -384,8 +384,7 @@ server.post(`${path}/comprarViagem`, async (request: express.Request, response: 
  *                  {
  *                    "viagem": {                            
  *                       "id_viagem": 1,                             
- *                       "local": "PA",                             
- *                       "vagas": 5,                                
+ *                       "local": "PA",                                                             
  *                       "local_partida": "Casa",                                
  *                       "hora_partida": "15:20",                                
  *                       "hora_volta": "22:20",                                
