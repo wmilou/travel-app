@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+:root{
+    --color-primary: #269dd7;
+    --color-secondary: #60b4df;
+    --background-pages: rgb(248, 246, 247)
+}
+*, html, body{
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    background-color: var(--background-pages);
+}
+.color-text-primary{
+    color: var(--color-primary);
+}
+
+.bg-color-primary{
+    background-color: var(--color-primary);
+}
+
+.bg-dark{
+    background: #000!important;
+}

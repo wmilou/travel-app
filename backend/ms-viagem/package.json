@@ -1,7 +1,7 @@
 {
   "name": "ms-viagem",
   "version": "0.0.1",
-  "description": "",
+  "description": "1. [Descrição](#1-Descrição) 2. [Iniciando o projeto](#2-Iniciando-o-projeto)",
   "author": "Andre, Luis, Vinicius e Wedsley",
   "main": "index.js",
   "scripts": {

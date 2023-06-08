@@ -1,0 +1,112 @@
+.card{
+    border-radius: 25px;
+    box-shadow: 0 0px 15px 0px rgba(0,0,0,.2);
+    overflow: hidden;
+
+    position: relative;
+    height: 300px;
+    transition: all .3s ease-in-out;
+    cursor: pointer;
+}
+.card:hover{
+    transform: scale(1.05);
+}
+.card::before{
+    content: "";
+    background-image: linear-gradient(360deg, rgba(0, 0, 0, 0.8) -0.08%, rgba(0, 0, 0, 0) 100.96%);
+    mix-blend-mode: multiply;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    border-radius: 1rem;
+    position: absolute;
+}
+
+.card--image{
+    height: 100%;
+    width: 100%;
+}
+
+.card--image img{
+    height: 100%;
+    width: 100%;
+
+    object-fit: cover;
+}
+
+.card--body{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.card--body p{
+    color: #fff;
+    text-align: center;
+}
+
+.card--body a{
+    background: none;
+    border-radius: 35px;
+    color: #fff;
+    padding: 5px 30px 5px;
+    text-transform: uppercase;
+    font-size: 13px;
+    transition: all .3s ease-in-out;
+}
+
+.card--body a:hover{
+    background: #fff;
+    border-radius: 35px;
+    color: var(--bs-dark-rgb);
+    padding: 5px 30px 5px;
+    text-transform: uppercase;
+    font-size: 13px;
+}
+
+.separator .btn{
+    border: 2px solid var(--color-primary);
+    color: var(--color-primary);
+    border-radius: 35px;
+    font-size: 18px;
+    text-transform: uppercase;
+    transition: all .3s ease-in-out;
+}
+
+.separator .btn:hover{
+    border: 2px solid var(--color-primary);
+    background: var(--color-primary);
+    color: #fff;
+}
+
+#connection .inner-container{
+    background: #000;
+    border-radius: 10px;
+    padding: 15px 65px;
+
+    justify-content: space-between;
+}
+
+#connection .inner-container p{
+    margin: 0;
+    color: #fff;
+    font-size: 18px;
+    display: flex;
+    align-items: center; 
+}
+
+#connection .inner-container p.h2{
+    font-size: 30px;
+    background: -webkit-linear-gradient(90deg, #eee, var(--color-primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#connection .inner-container button{
+    background: linear-gradient(308.6deg, var(--color-primary) -7.94%,  var(--color-secondary) 79.38%);
+    border: none;
+    border-radius: 20px;
+    width: 20%;
+
+}

@@ -1,0 +1,187 @@
+services:
+  nginx-reverse-proxy:
+    image: nginx:latest
+    volumes:
+      - ./infra/AppGatewayConfig/nginx/reverse_proxy.conf:/etc/nginx/conf.d/default.conf
+      # - ./infra/AppGatewayConfig/nginx/cert/star_xx_com.pem:/etc/nginx/cert/star_xx_com.pem
+      # - ./infra/AppGatewayConfig/nginx/cert/star_xx_com.key:/etc/nginx/cert/star_xx_com.key
+      # - ./infra/AppGatewayConfig/nginx/cert/star_xx_com.crt:/etc/nginx/cert/star_xx_com.crt
+    ports:
+      - 80:80
+      - 443:443
+    links:
+      - "node-frontend:node-frontend"
+      - "node-backend-ms-usuario:node-backend-ms-usuario"
+      - "node-backend-ms-viagem:node-backend-ms-viagem"
+      - "node-backend-ms-formas-de-pagamento:node-backend-ms-formas-de-pagamento"
+    networks:
+      - ms-frontend-with-postgres
+      - ms-usuario-with-postgres
+      - ms-viagem-with-postgres
+      - ms-formas-de-pagamento-with-postgres
+
+  node-frontend:
+    build:
+      context: ./
+      dockerfile: ./infra/Dockerfile
+      args:
+        - PATH_TO_CODE=./frontend/travel-front/
+        - NODE_ENV=development
+        - PORT=4200
+    command:
+      - /bin/sh
+      - -c
+      - |
+        echo "------------------ STARTING FRONT --------------------"
+        npm run start
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./frontend/travel-front/:/opt/node_app/app
+      - ./frontend/travel-front/package.json:/opt/node_app/package.json
+      - notused:/opt/node_app/app/node_modules
+    env_file:
+        - ./infra/.env
+    links:
+      - "postgres:postgresdb"
+    depends_on:
+      - node-backend-ms-usuario 
+      - node-backend-ms-viagem
+      - node-backend-ms-formas-de-pagamento
+    networks:
+      - ms-frontend-with-postgres
+
+  node-backend-ms-usuario:
+    build:
+      context: ./
+      dockerfile: ./infra/Dockerfile
+      args:
+        - PATH_TO_CODE=./backend/ms-usuario/
+        - NODE_ENV=development
+        - PORT=3000
+    command:
+      - /bin/sh
+      - -c
+      - |
+        echo "------------------ PRISMA  --------------------"
+        npx prisma generate
+        echo "------------------ NODEMON --------------------"
+        npm run watch
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backend/ms-usuario/:/opt/node_app/app
+      - ./backend/ms-usuario/package.json:/opt/node_app/package.json
+      - notused:/opt/node_app/app/node_modules
+    env_file:
+        - ./infra/.env
+    links:
+      - "postgres:postgresdb"
+    depends_on:
+      - postgres
+    networks:
+      - ms-usuario-with-postgres
+
+  node-backend-ms-viagem:
+    build:
+      context: ./
+      dockerfile: ./infra/Dockerfile
+      args:
+        - PATH_TO_CODE=./backend/ms-viagem/
+        - NODE_ENV=development
+        - PORT=3001
+    command:
+      - /bin/sh
+      - -c
+      - |
+        echo "------------------ PRISMA  --------------------"
+        npx prisma generate
+        echo "------------------ NODEMON --------------------"
+        npm run watch
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./backend/ms-viagem/:/opt/node_app/app
+      - ./backend/ms-viagem/package.json:/opt/node_app/package.json
+      - notused:/opt/node_app/app/node_modules
+    env_file:
+        - ./infra/.env
+    links:
+      - "postgres:postgresdb"
+    depends_on:
+      - postgres
+    networks:
+      - ms-viagem-with-postgres
+
+
+  node-backend-ms-formas-de-pagamento:
+    build:
+      context: ./
+      dockerfile: ./infra/Dockerfile
+      args:
+        - PATH_TO_CODE=./backend/ms-formas-de-pagamento/
+        - NODE_ENV=development
+        - PORT=3002
+    command:
+      - /bin/sh
+      - -c
+      - |
+        echo "------------------ PRISMA  --------------------"
+        npx prisma generate
+        echo "------------------ NODEMON --------------------"
+        npm run watch
+    ports:
+      - "3002:3002"
+    volumes:
+      - ./backend/ms-formas-de-pagamento/:/opt/node_app/app
+      - ./backend/ms-formas-de-pagamento/package.json:/opt/node_app/package.json
+      - notused:/opt/node_app/app/node_modules
+    env_file:
+        - ./infra/.env
+    links:
+      - "postgres:postgresdb"
+    depends_on:
+      - postgres
+    networks:
+      - ms-formas-de-pagamento-with-postgres
+
+
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - "8043:80"
+    depends_on:
+      - postgres
+    env_file:
+        - ./infra/.env
+    networks:
+      - ms-usuario-with-postgres
+      - ms-viagem-with-postgres
+      - ms-formas-de-pagamento-with-postgres
+    links:
+      - "postgres:postgresdb"
+
+  postgres:
+    image: postgres:latest
+    env_file:
+        - ./infra/.env
+    ports:
+      - "5432:5432"
+    networks:
+      - ms-usuario-with-postgres
+      - ms-viagem-with-postgres
+      - ms-formas-de-pagamento-with-postgres
+
+volumes:
+  notused:
+
+networks: 
+  ms-usuario-with-postgres:
+    driver: bridge
+  ms-formas-de-pagamento-with-postgres:
+    driver: bridge
+  ms-viagem-with-postgres:
+    driver: bridge
+  ms-frontend-with-postgres:
+    driver: bridge
+

@@ -1,0 +1,87 @@
+header{
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    box-shadow: 0 0px 15px 5px rgba(0,0,0,.3);
+
+}
+.navbar-brand{
+    font-size: 28px;
+    font-weight: 400;
+}
+
+.navbar-brand span{
+    font-weight: 700;
+}
+.user-role ul{
+    padding: 0;
+    list-style: none;
+    margin: 0;
+}
+.user{
+    font-size: 30px;
+}
+.user fa-icon{
+    color: #fff;
+}
+
+/* ------------ */
+.topbar ul{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1.5rem;
+
+    padding: 0;
+    margin: 0;
+}
+
+.topbar ul li a{
+    color: #212529
+}
+.user-role ul{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+.user-role li{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.user-role p{
+    font-size: 13px;
+    color: #fff;
+    margin: 0;
+}
+
+.questions{
+    color: #fff
+}
+
+.separator{
+    width: 2px;
+    height: 35px;
+    background: #fff;
+}
+.user-role .fidelidade{
+    gap: 2px;
+}
+.fidelidade span{
+    color: #fff;
+}
+.fidelidade span:first-child{
+    background: linear-gradient(308.6deg, var(--color-primary) -7.94%,  var(--color-secondary) 79.38%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
+}
+
+.fidelidade svg{
+    width: 20px;
+    height: auto;
+}
