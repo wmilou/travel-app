@@ -1,10 +1,11 @@
-import { PrismaClient, Viagem } from '@prisma/client'
+import { PrismaClient } from '@prisma/client'
 import { UsuarioService } from '../usuario_services/usuario_get_service';
+import { IViagem } from '../../model/IViagem';
 
 export class ViagemGetService {
     private prisma = new PrismaClient();
 
-    async buscarTodasViagem(): Promise<Array<Viagem>> {
+    async buscarTodasViagem(): Promise<Array<object>> {
         try {            
             const todasViagem = await this.prisma.viagem.findMany();
 
@@ -15,7 +16,7 @@ export class ViagemGetService {
         }
     }
 
-    async buscarUmaViagem(idViagem: number): Promise<Viagem> {
+    async buscarUmaViagem(idViagem: number): Promise<IViagem> {
         try {            
             const viagem = await this.prisma.viagem.findUnique({
                 where: {
@@ -33,7 +34,7 @@ export class ViagemGetService {
         }
     }
 
-    async buscarViagemVinculadaAoUsuario(idUsuario: number): Promise<object> {
+    async buscarViagemVinculadaAoUsuario(idUsuario: number): Promise<Array<object>> {
         try {
             const viagensVinculadasAoUsuario = [];
 

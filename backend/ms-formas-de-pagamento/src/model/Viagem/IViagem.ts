@@ -1,4 +1,3 @@
-import { Viagem } from "@prisma/client"
 import { IViagemPessoa } from "./IViagemPessoa"
 
 export interface IViagem {

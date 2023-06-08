@@ -65,6 +65,7 @@ services:
       - |
         echo "------------------ PRISMA  --------------------"
         npx prisma generate
+        npx prisma db push
         echo "------------------ NODEMON --------------------"
         npm run watch
     ports:
@@ -96,6 +97,7 @@ services:
       - |
         echo "------------------ PRISMA  --------------------"
         npx prisma generate
+        npx prisma db push
         echo "------------------ NODEMON --------------------"
         npm run watch
     ports:
@@ -128,6 +130,7 @@ services:
       - |
         echo "------------------ PRISMA  --------------------"
         npx prisma generate
+        npx prisma db push
         echo "------------------ NODEMON --------------------"
         npm run watch
     ports:
@@ -165,6 +168,8 @@ services:
     image: postgres:latest
     env_file:
         - ./infra/.env
+    volumes:
+        - ./infra/script.sql:/docker-entrypoint-initdb.d/script.sql
     ports:
       - "5432:5432"
     networks:

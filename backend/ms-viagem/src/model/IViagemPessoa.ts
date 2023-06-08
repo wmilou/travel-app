@@ -7,7 +7,7 @@ export interface IViagemPessoa {
     fk_pessoa: number,
     viagem: IInputViagem,
     fk_viagem: number,
-    forma_pagamento: any, //  FormaPagamento 
+    forma_pagamento: any,
     fk_forma_pag: any,
     sn_quitado: any
 }

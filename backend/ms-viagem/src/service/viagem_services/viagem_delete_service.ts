@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 import { ViagemGetService } from './viagem_get_service';
+import { IViagem } from '../../model/IViagem';
 
 export class ViagemDeleteService {
     private prisma = new PrismaClient();
@@ -7,7 +8,7 @@ export class ViagemDeleteService {
 
     async cancelarViagem(idViagem: number): Promise<string> {
         try {            
-            const viagem = await this.ViagemGetService.buscarUmaViagem(idViagem);
+            const viagem: IViagem = await this.ViagemGetService.buscarUmaViagem(idViagem);
 
             if(viagem && viagem.viagem_cancelada) {
                 await this.prisma.viagem.update({
