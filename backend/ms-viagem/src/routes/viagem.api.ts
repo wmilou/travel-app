@@ -2,6 +2,7 @@ import express from "express";
 import { ViagemController } from "../controller/viagem.controller";
 import { IInputComprarViagem } from "../model/IInputComprarViagem";
 
+
 const path: string = "/viagem";
 
 const controller = new ViagemController ({});
