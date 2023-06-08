@@ -49,7 +49,7 @@ model Forma_pagamento {
 model Viagem_pessoa {
     id_viagem_pessoa Int    @id @default(autoincrement())
     pessoa           Pessoa @relation(fields: [fk_pessoa], references: [id_pessoa])
-    fk_pessoa        Int
+    fk_pessoa        Int    
     viagem           Viagem @relation(fields: [fk_viagem], references: [id_viagem])
     fk_viagem        Int
     forma_pagamento  Forma_pagamento @relation(fields: [fk_forma_pag], references: [id_pagamento])

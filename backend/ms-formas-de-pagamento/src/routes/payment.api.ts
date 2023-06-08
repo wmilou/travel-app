@@ -7,6 +7,30 @@ const controller = new FormaDePagamentoController ({});
 
 const server = express();
 
+/**
+ * @swagger
+ *  paths:
+ *  /formaDePagamento:
+ *    get:
+ *      tags:
+ *        - FormaDePagamento
+ *      summary: Busca Todas Forma De Pagamento no DB
+ *      description: Busca Todas Forma De Pagamento no DB
+ *      responses:
+ *        200:
+ *          description: Successful operation
+ *          schema:
+ *            type: object
+ *            example:
+ *              [
+ *                  {
+ *                    "id_pagamento": 1,                                
+ *                    "descricao": "pix"                                
+ *                  }   
+ *              ] 
+ *        422:
+ *          description: Falha ao acessar DB
+ */
 server.get(`${path}`, async (request: express.Request, response: express.Response, next: express.NextFunction) => {
     try {
         return response.json(await controller.buscarTodasFormasDePagamento());
@@ -15,6 +39,39 @@ server.get(`${path}`, async (request: express.Request, response: express.Respons
     }
 });
 
+/**
+ * @swagger
+ *  paths:
+ *  /formaDePagamento/buscarUmaFormaPagamento:
+ *    get:
+ *      tags:
+ *        - FormaDePagamento
+ *      summary: Busca uma Forma De Pagamento especifica no DB
+ *      description: Busca uma Forma De Pagamento especifica no DB
+ *      parameters:
+ *        - in: header
+ *          name: id-formas-de-pagamento
+ *          description: input id-formas-de-pagamento
+ *          schema:
+ *            type: number
+ *            required:
+ *              - id-formas-de-pagamento
+ *            properties:
+ *              id-formas-de-pagamento:
+ *                type: number
+ *      responses:
+ *        200:
+ *          description: Successful operation
+ *          schema:
+ *            type: object
+ *            example:
+ *               {
+ *                 "id_pagamento": 1,                                
+ *                 "descricao": "pix"                                
+ *               }    
+ *        422:
+ *          description: Falha ao acessar DB
+ */
 server.get(`${path}/buscarUmaFormaPagamento`, async (request: express.Request, response: express.Response, next: express.NextFunction) => {
     try {
         if (request.headers["id-formas-de-pagamento"]) {
@@ -27,6 +84,38 @@ server.get(`${path}/buscarUmaFormaPagamento`, async (request: express.Request, r
     }
 });
 
+/**
+ * @swagger
+ *  paths:
+ *  /formaDePagamento:
+ *    post:
+ *      tags:
+ *        - FormaDePagamento
+ *      summary: Salva a Forma De Pagamento no DB
+ *      description: Salva a Forma De Pagamento no DB
+ *      parameters:
+ *        - in: body
+ *          name: input formaDePagamento
+ *          description: input formaDePagamento
+ *          schema:
+ *            type: object
+ *            required:
+ *              - descricao
+ *            properties:
+ *              descricao:
+ *                type: string
+ *      responses:
+ *        200:
+ *          description: Successful operation
+ *          schema:
+ *            type: object
+ *            example:
+ *               {
+ *                 "idFormaDePagamento": 1,                                
+ *               }    
+ *        422:
+ *          description: Falha ao acessar DB
+ */
 server.post(`${path}`, async (request: express.Request, response: express.Response, next: express.NextFunction) => {
     try {
         if (request.body) {
@@ -39,6 +128,48 @@ server.post(`${path}`, async (request: express.Request, response: express.Respon
     }
 });
 
+/**
+ * @swagger
+ *  paths:
+ *  /formaDePagamento:
+ *    put:
+ *      tags:
+ *        - FormaDePagamento
+ *      summary: Altera a descrição da Forma De Pagamento no DB
+ *      description: Altera a descrição da Forma De Pagamento no DB
+ *      parameters:
+ *        - in: header
+ *          name: id-formas-de-pagamento
+ *          description: input id-formas-de-pagamento
+ *          schema:
+ *            type: number
+ *            required:
+ *              - id-formas-de-pagamento
+ *            properties:
+ *              id-formas-de-pagamento:
+ *                type: number
+ *        - in: body
+ *          name: input formaDePagamento
+ *          description: input formaDePagamento
+ *          schema:
+ *            type: object
+ *            required:
+ *              - descricao
+ *            properties:
+ *              descricao:
+ *                type: string
+ *      responses:
+ *        200:
+ *          description: Successful operation
+ *          schema:
+ *            type: object
+ *            example:
+ *               {
+ *                 "idFormaDePagamentoAlterado": 1,                                
+ *               } 
+ *        422:
+ *          description: Falha ao acessar DB
+ */
 server.put(`${path}`, async (request: express.Request, response: express.Response, next: express.NextFunction) => {
     try {
         if (request.body && request.headers["id-formas-de-pagamento"]) {

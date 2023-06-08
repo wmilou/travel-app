@@ -4,6 +4,7 @@ import { ViagemGetService } from "../service/viagem_services/viagem_get_service"
 import { ViagemPostService } from "../service/viagem_services/viagem_post_service";
 import { ViagemDeleteService } from "../service/viagem_services/viagem_delete_service";
 import { IInputAtualizarViagem } from "../model/InputAtualizarViagem";
+import { IInputComprarViagem } from "../model/IInputComprarViagem";
 
 export class ViagemController {
     private serviceGet: ViagemGetService;
@@ -37,5 +38,13 @@ export class ViagemController {
 
     async cancelarViagem(idViagem: number): Promise<string> {        
         return this.serviceDelete.cancelarViagem(idViagem);
+    }
+
+    async comprarViagem(inputComprarViagem: IInputComprarViagem): Promise<object> {
+        return this.servicePost.comprarViagem(inputComprarViagem);
+    }
+    
+    async buscarViagemVinculadaAoUsuario(idUsuario: number): Promise<object> {
+        return this.serviceGet.buscarViagemVinculadaAoUsuario(idUsuario);
     }
 }
