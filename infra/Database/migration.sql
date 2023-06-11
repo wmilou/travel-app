@@ -1,6 +1,3 @@
-CREATE DATABASE travelapp;
-\c travelapp 
-
 CREATE TABLE pessoa (
     id_pessoa serial NOT NULL,
     nome VARCHAR(50) NOT NULL,
