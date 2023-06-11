@@ -2,12 +2,15 @@ import express from "express";
 import PaymentApi from "./routes/payment.api"
 import bodyParser from "body-parser";
 import { enviroment } from "./config/environment";
+import { SwaggerApi } from "./routes/swagger.api";
 
 const app = express();
 
 app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: true }));
 app.use("/", PaymentApi);
+
+new SwaggerApi().swagger(app);
 
 const PORT = enviroment.port;
 

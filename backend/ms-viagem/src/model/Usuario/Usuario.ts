@@ -1,5 +1,6 @@
 export interface IUsuario {
     id_pessoa: number,
+    nome: string
     dat_nasc: string
     rg: string,
     cpf_cnpj: string,

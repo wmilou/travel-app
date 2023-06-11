@@ -1,4 +1,4 @@
-import { PrismaClient, Viagem_pessoa } from '@prisma/client'
+import { PrismaClient } from '@prisma/client'
 import { IInputViagem } from '../../model/InputViagem';
 import { UsuarioService } from '../usuario_services/usuario_get_service';
 import { IViagem } from '../../model/IViagem';
@@ -8,6 +8,7 @@ import { ReturnFormaDePagamento } from '../../model/Forma_De_Pagamento/ReturnFor
 import { IInputComprarViagem } from '../../model/IInputComprarViagem';
 import { ViagemGetService } from './viagem_get_service';
 import { ViagemPutService } from './viagem_put_service';
+import { IViagemPessoa } from '../../model/IViagemPessoa';
 
 
 export class ViagemPostService {
@@ -38,7 +39,7 @@ export class ViagemPostService {
         }
     }
 
-    async criarViagemPessoa(viagem: IViagem, usuario: IUsuario, formaPagamento: ReturnFormaDePagamento): Promise<Viagem_pessoa> {
+    async criarViagemPessoa(viagem: IViagem, usuario: IUsuario, formaPagamento: ReturnFormaDePagamento): Promise<IViagemPessoa> {
         try {
             const viagemPessoa = await this.prisma.viagem_pessoa.create({
                 data: {

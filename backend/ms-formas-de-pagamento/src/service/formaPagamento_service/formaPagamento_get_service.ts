@@ -1,9 +1,9 @@
-import { PrismaClient, Forma_pagamento } from '@prisma/client'
+import { PrismaClient } from '@prisma/client'
 
 export class FormaPagamentoGetService {
     private prisma = new PrismaClient();
 
-    async buscarTodasFormasDePagamento(): Promise<Array<Forma_pagamento>> {
+    async buscarTodasFormasDePagamento(): Promise<Array<object>> {
         try {            
             const todasformaPagamento= await this.prisma.forma_pagamento.findMany();
 
@@ -13,7 +13,7 @@ export class FormaPagamentoGetService {
         }
     }
 
-    async buscarUmaFormaPagamento(idFormasPagamento: number): Promise<Forma_pagamento> {
+    async buscarUmaFormaPagamento(idFormasPagamento: number): Promise<object> {
         try {            
             const formasPagamento = await this.prisma.forma_pagamento.findUnique({
                 where: {

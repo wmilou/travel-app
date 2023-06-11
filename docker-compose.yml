@@ -62,6 +62,7 @@ services:
       - |
         echo "------------------ PRISMA  --------------------"
         npx prisma generate
+        npx prisma db push
         echo "------------------ NODEMON --------------------"
         npm run watch
     ports:
@@ -93,6 +94,7 @@ services:
       - |
         echo "------------------ PRISMA  --------------------"
         npx prisma generate
+        npx prisma db push
         echo "------------------ NODEMON --------------------"
         npm run watch
     ports:
@@ -125,6 +127,7 @@ services:
       - |
         echo "------------------ PRISMA  --------------------"
         npx prisma generate
+        npx prisma db push
         echo "------------------ NODEMON --------------------"
         npm run watch
     ports:
