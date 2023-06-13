@@ -23,7 +23,7 @@ export class SwaggerApi {
                     version: "0.0.1",
                     description: "",
                 },
-                host: "localhost:3002",
+                host: enviroment.host,
                 basePath: "",
                 schemes: ["https", "http"],
             },
