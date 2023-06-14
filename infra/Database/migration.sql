@@ -28,9 +28,6 @@ CREATE TABLE viagem (
 );
 
 INSERT INTO viagem(local, vagas, local_partida, hora_partida, hora_volta, imagem_1, imagem_2, imagem_3, viagem_cancelada)
-VALUES('Urubici', 5, 'Rodoviaria de Campinas', '07h00', '20h00', 'abc', 'abcd', 'abcde', false);
-
-INSERT INTO viagem(local, vagas, local_partida, hora_partida, hora_volta, imagem_1, imagem_2, imagem_3, viagem_cancelada)
 VALUES('Japão', 14, 'Guarulhos', '23h00', '22h00', 'https://123milhas.com/_next/image?url=https%3A%2F%2F123milhas.com%2Fimg%2Ftravel-packages%2Frio-1.jpg&w=1920&q=100', 'R$ 3000,00', 'Bem-vindo à sua viagem ao Japão, uma terra de contrastes fascinantes onde a tradição milenar se encontra com a modernidade vibrante. Prepare-se para uma aventura inesquecível enquanto exploramos este país único e cativante.', false);
 
 INSERT INTO viagem(local, vagas, local_partida, hora_partida, hora_volta, imagem_1, imagem_2, imagem_3, viagem_cancelada)
