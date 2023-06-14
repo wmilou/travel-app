@@ -1,5 +1,5 @@
 export interface ITravel{
-    id: number;
+    id_viagem: number;
     local:         String;
     vagas:         number;
     local_partida: String;

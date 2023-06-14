@@ -35,7 +35,8 @@
     font-size: 28px;
 }
 
-#travel-page .dates{
+#travel-page .dates,
+.price{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -47,7 +48,8 @@
     width: 50%;
 }
 
-#travel-page .dates .box p{
+#travel-page .dates .box p,
+#travel-page .price p{
     margin: 0;
     font-size: 12px;
 }
@@ -55,4 +57,46 @@
 #travel-page .dates .box p:last-child{
     font-size: 18px;
 }
+#travel-page .price .box{
+    padding: 15px 1.5rem;
+    width: 50%;
 
+}
+#travel-page .price .box p{
+    font-size: 16px;
+}
+
+#travel-page .price .box p strong{
+    font-size: 19px;
+}
+
+#travel-page .price .box input{
+    width: 100%;
+    border-radius: 25px;
+    outline: none;
+    border: 1px solid #000;
+    padding-left: 20px;
+}
+.modal-buy {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.6);
+}
+
+.modal-dialog{
+    background: #fff;
+    width: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(50%, -50%);
+    padding: 1rem 2rem;
+    border-radius: 25px
+}
+
+#travel-page img{
+    width: 100%;
+    height: 100%;
+}

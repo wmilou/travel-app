@@ -14,8 +14,9 @@ const routes: Routes = [
     component: TravelListComponent
   },
   {
-    path: 'travel/view/:id',
-    component: TravelPageComponent
+    path: 'travel/view/:id_viagem',
+    component: TravelPageComponent,
+    
   },
   {
     path: 'travel/register',

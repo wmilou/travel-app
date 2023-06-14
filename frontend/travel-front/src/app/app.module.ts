@@ -10,6 +10,8 @@ import { TravelListComponent } from './components/travel-list/travel-list.compon
 import { TravelPageComponent } from './components/travel-page/travel-page.component';
 import { LoginRegisterComponent } from './components/login-register/login-register.component';
 import { PaymentComponent } from './components/payment/payment.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { PaymentComponent } from './components/payment/payment.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

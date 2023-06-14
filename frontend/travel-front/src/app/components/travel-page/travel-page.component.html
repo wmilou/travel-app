@@ -4,18 +4,18 @@
             
             <div class="col-lg-6">
                 <div class="inner-container">
-                    <h2>Nome da viagem</h2>
+                    <h2>{{travel.local}}</h2>
 
                     <div class="travel-info">
                         <div class="box box--partida">
                             <div class="icon"><i class="fa-regular fa-circle"></i></div>
                             <p class="title">Partida</p>
-                            <p><strong>Campinas, Vira os copo</strong></p>
+                            <p><strong>{{travel.local_partida}}, Algum lugar</strong></p>
                         </div>
                         <div class="box box--destino">
                             <div class="icon"><i class="fa-solid fa-location-dot"></i></div>
                             <p class="title">Destino</p>
-                            <p><strong>Campinas, Vira os copo</strong></p>
+                            <p><strong>{{travel.local}}, Algum lugar</strong></p>
                         </div>
 
                         <div class="dates">
@@ -24,17 +24,76 @@
                                 <p>sex, 17 de Jun. 12h</p>
                             </div>
                             <div class="box box-date-volta">
-                                <p>Ida</p>
+                                <p>Volta</p>
                                 <p>sex, 17 de Jun. 12h</p>
+                            </div>
+                        </div>
+
+                        <div class="price">
+                            <div class="box box-price">
+                                <p>Preço <strong>{{travel.imagem_2}}</strong></p>
+                            </div>
+                            <div class="box box-quatity">
+                                <input type="number" min="1" max="100" [(ngModel)]="qtdViagem">
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <div class="mt-2">
+                    <button style="width: 100%;" class="btn btn-success" (click)="buyTravel()" data-bs-toggle="modal" data-bs-target="#buyPopup">Comprar</button>
+                </div>
             </div>
 
             <div class="col-lg-6">
-                <img src="https://placehold.co/600x400" alt="">
+                <img src={{travel.imagem_1}} alt="">
+
+                
+            </div>
+
+            <div class="col-lg-12 mt-4">
+                <h4>Descrição: </h4>
+                <p>{{travel.imagem_3}}</p>
             </div>
         </div>
     </div>
 </section>
+
+<div class="modal-buy" *ngIf="isVisible==true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Obrigado pela compra!</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="changeView()"></button>
+        </div>
+        <div class="modal-body">
+          <p>Recebemos o seu pedido!!<br> Em breve um de nossos vendedores entrará em contato</p>
+          <div class="modal--innerBody">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Preço</th>
+                    <th scope="col">Partida</th>
+                    <th scope="col">Destino</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td></td>
+                    <td><strong>R$ {{travel.imagem_2}}</strong></td>
+                    <th scope="row"><strong>{{travel.local_partida}} {{travel.hora_partida}}</strong></th>
+                    <td colspan="2"><strong>{{travel.local}} {{travel.hora_volta}}</strong></td>
+                  </tr>
+                </tbody>
+                </table>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="changeView()">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isVisible == false"></div>
