@@ -33,30 +33,32 @@ const server = express();
  *                type: string
  *              senha:
  *                type: string
- *        - in: header
- *          name: login
- *          description: Cadastra um time 
- *          schema:
- *            type: string
- *            required:
- *              - id-usuario
- *            properties:
- *              id-usuario:
- *                type: number
  *      responses:
  *        200:
  *          description: Successful operation
  *          schema:
- *            type: string
+ *            type: array
  *            example:
- *              "Login realizado com sucesso!!"
+ *              [
+ *                  {
+ *                      "id_pessoa": 2,
+ *                      "nome": "string",
+ *                      "dat_nasc": "string",
+ *                      "rg": "string",
+ *                      "cpf_cnpj": "123.123.123-00",
+ *                      "telefone": "string",
+ *                      "email": "string@gmail.com",
+ *                      "senha": "string",
+ *                      "ativo": true
+ *                  }
+ *              ]
  *        422:
  *          description: Falha ao acessar DB
  */
 server.get(`${pathLogin}`, async (request: express.Request, response: express.Response, next: express.NextFunction) => {
     try {
-        if (request.body && request.headers["id-usuario"]) {
-            return response.json(await controllerLogin.login(request.body, Number(request.headers["id-usuario"])));
+        if (request.body) {
+            return response.json(await controllerLogin.login(request.body));
         }
 
         next();

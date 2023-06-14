@@ -1,18 +1,26 @@
+import { PrismaClient } from '@prisma/client'
 import { ILogin } from "../../model/InputLogin";
-import { UsuarioGetService } from "../usuario_services/usuario_get_service";
+import { IUsuario } from '../../model/Usuario';
 
 export class LoginGetService {
-    private UsuarioGetService = new UsuarioGetService();
+    private prisma = new PrismaClient();
 
-    async login(dadosParaLogin: ILogin, idUsuario: number): Promise<string> {
-        const usuario = await this.UsuarioGetService.buscarUmUsuario(idUsuario);
-        const { email } = dadosParaLogin;
-        const { senha } = dadosParaLogin;
+    async login(dadosParaLogin: ILogin): Promise<IUsuario | string> {
+        try {
+            const usuario = await this.prisma.pessoa.findMany({
+                where: {
+                    email: dadosParaLogin.email,
+                },
+            });
+    
+            if (usuario) {
+                return usuario;
+            }
 
-        if (email === usuario.email && senha === usuario.senha) {
-            return "Login realizado com sucesso!!";
+            return "Erro no login - usuário não encontrado";
+        } catch (error) {
+            console.log(error);
+            throw error;
         }
-
-        return "Erro no login - usuário não encontrado";
     }
 }
